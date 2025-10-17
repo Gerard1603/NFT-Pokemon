@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PokéBattle Arena</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="landing-page">
+    <!-- Animated Background Container -->
+    <div class="animated-bg">
+      <div class="floating-circle circle-1"></div>
+      <div class="floating-circle circle-2"></div>
+      <div class="floating-circle circle-3"></div>
+    </div>
+
+    <!-- Main Landing Content -->
+    <div class="landing-container" id="landingContainer">
+      <h1 class="game-title">
+        <span class="title-letter">P</span>
+        <span class="title-letter">o</span>
+        <span class="title-letter">k</span>
+        <span class="title-letter">é</span>
+        <span class="title-letter">B</span>
+        <span class="title-letter">a</span>
+        <span class="title-letter">t</span>
+        <span class="title-letter">t</span>
+        <span class="title-letter">l</span>
+        <span class="title-letter">e</span>
+      </h1>
+      <p class="subtitle">Choose your starter and begin your journey!</p>
+      <button class="pixel-btn start-btn" id="startBtn">Start Game</button>
+    </div>
+
+    <!-- Trainer Selection Page (Hidden Initially) -->
+    <div class="trainer-selection hidden" id="trainerSelection">
+      <h2 class="section-title">Choose Your Starter Pokémon</h2>
+      <div class="starter-grid" id="starterGrid">
+        <!-- Starters will be dynamically generated -->
+      </div>
+      <button class="pixel-btn confirm-btn hidden" id="confirmBtn">
+        Confirm Selection
+      </button>
+    </div>
+
+    <!-- Battle Page (Hidden Initially) -->
+    <div class="battle-page hidden" id="battlePage">
+      <div class="battle-container">
+        <!-- Opponent Section -->
+        <div class="pokemon-section opponent-section">
+          <div class="pokemon-info">
+            <div class="name-level">
+              <span class="pokemon-name" id="opponentName">???</span>
+              <span class="pokemon-level" id="opponentLevel">Lv.?</span>
+            </div>
+            <div class="hp-bar-container">
+              <div class="hp-bar">
+                <div class="hp-fill opponent-hp" id="opponentHpBar"></div>
+              </div>
+              <span class="hp-text" id="opponentHpText">?/?</span>
+            </div>
+          </div>
+          <div class="pokemon-sprite opponent-sprite" id="opponentSprite">
+            <!-- Placeholder: Insert opponent sprite image here -->
+            <div class="sprite-placeholder">🔥</div>
+          </div>
+        </div>
+
+        <!-- Player Section -->
+        <div class="pokemon-section player-section">
+          <div class="pokemon-sprite player-sprite" id="playerSprite">
+            <!-- Placeholder: Insert player sprite image here -->
+            <div class="sprite-placeholder">⚡</div>
+          </div>
+          <div class="pokemon-info">
+            <div class="name-level">
+              <span class="pokemon-name" id="playerName">???</span>
+              <span class="pokemon-level" id="playerLevel">Lv.?</span>
+            </div>
+            <div class="hp-bar-container">
+              <div class="hp-bar">
+                <div class="hp-fill player-hp" id="playerHpBar"></div>
+              </div>
+              <span class="hp-text" id="playerHpText">?/?</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Battle Log -->
+      <div class="battle-log" id="battleLog">
+        <p>What will you do?</p>
+      </div>
+
+      <!-- Command Menu -->
+      <div class="command-menu" id="commandMenu">
+        <button class="command-btn" id="attackBtn">⚔️ Attack</button>
+        <button class="command-btn disabled" id="itemBtn">🎒 Item</button>
+        <button class="command-btn" id="runBtn">🏃 Run</button>
+      </div>
+
+      <!-- Move Selection Menu (Hidden Initially) -->
+      <div class="move-menu hidden" id="moveMenu">
+        <!-- Moves will be dynamically generated -->
+      </div>
+    </div>
+
+    <script src="game.js"></script>
+  </body>
+</html>
