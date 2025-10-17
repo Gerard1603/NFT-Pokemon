@@ -1,4 +1,3 @@
-// ===== POKEMON CLASS STRUCTURE =====
 class Pokemon {
   constructor(id, name, type, level, maxHP, attack, defense, sprite, moves) {
     this.id = id;
@@ -10,7 +9,7 @@ class Pokemon {
     this.attack = attack;
     this.defense = defense;
     this.sprite = sprite;
-    this.moves = moves; // Array of Move objects
+    this.moves = moves;
   }
 
   takeDamage(damage) {
@@ -27,7 +26,6 @@ class Pokemon {
   }
 }
 
-// ===== MOVE CLASS STRUCTURE =====
 class Move {
   constructor(name, type, power, accuracy = 100) {
     this.name = name;
@@ -37,639 +35,205 @@ class Move {
   }
 }
 
-// ===== TYPE EFFECTIVENESS CHART =====
 const typeChart = {
+  normal: { rock: 0.5, ghost: 0, steel: 0.5 },
   fire: {
+    fire: 0.5,
+    water: 0.5,
     grass: 2,
     ice: 2,
     bug: 2,
-    steel: 2,
-    water: 0.5,
-    fire: 0.5,
     rock: 0.5,
     dragon: 0.5,
-    electric: 1,
-    normal: 1,
-    fighting: 1,
-    poison: 1,
-    ground: 1,
-    flying: 1,
-    psychic: 1,
-    ghost: 1,
-    dark: 1,
-    fairy: 1,
+    steel: 2,
   },
-  water: {
-    fire: 2,
-    ground: 2,
-    rock: 2,
-    grass: 0.5,
-    water: 0.5,
-    dragon: 0.5,
-    electric: 1,
-    normal: 1,
-    fighting: 1,
-    poison: 1,
-    flying: 1,
-    psychic: 1,
-    bug: 1,
-    ghost: 1,
-    ice: 1,
-    steel: 1,
-    dark: 1,
-    fairy: 1,
-  },
-  grass: {
-    water: 2,
-    ground: 2,
-    rock: 2,
-    fire: 0.5,
-    grass: 0.5,
-    poison: 0.5,
-    flying: 0.5,
-    bug: 0.5,
-    dragon: 0.5,
-    steel: 0.5,
-    electric: 1,
-    normal: 1,
-    fighting: 1,
-    psychic: 1,
-    ice: 1,
-    ghost: 1,
-    dark: 1,
-    fairy: 1,
-  },
+  water: { fire: 2, water: 0.5, grass: 0.5, ground: 2, rock: 2, dragon: 0.5 },
   electric: {
     water: 2,
-    flying: 2,
     electric: 0.5,
     grass: 0.5,
-    dragon: 0.5,
     ground: 0,
-    fire: 1,
-    normal: 1,
-    fighting: 1,
-    poison: 1,
-    psychic: 1,
-    bug: 1,
-    rock: 1,
-    ghost: 1,
-    ice: 1,
-    steel: 1,
-    dark: 1,
-    fairy: 1,
+    flying: 2,
+    dragon: 0.5,
+  },
+  grass: {
+    fire: 0.5,
+    water: 2,
+    grass: 0.5,
+    poison: 0.5,
+    ground: 2,
+    flying: 0.5,
+    bug: 0.5,
+    rock: 2,
+    dragon: 0.5,
+    steel: 0.5,
   },
   ice: {
+    fire: 0.5,
+    water: 0.5,
     grass: 2,
+    ice: 0.5,
     ground: 2,
     flying: 2,
     dragon: 2,
-    fire: 0.5,
-    water: 0.5,
-    ice: 0.5,
     steel: 0.5,
-    electric: 1,
-    normal: 1,
-    fighting: 1,
-    poison: 1,
-    rock: 1,
-    psychic: 1,
-    bug: 1,
-    ghost: 1,
-    dark: 1,
-    fairy: 1,
   },
   fighting: {
     normal: 2,
     ice: 2,
-    rock: 2,
-    dark: 2,
-    steel: 2,
     poison: 0.5,
     flying: 0.5,
     psychic: 0.5,
     bug: 0.5,
-    fairy: 0.5,
+    rock: 2,
     ghost: 0,
-    fire: 1,
-    water: 1,
-    grass: 1,
-    electric: 1,
-    ground: 1,
-    dragon: 1,
+    dark: 2,
+    steel: 2,
+    fairy: 0.5,
   },
   poison: {
     grass: 2,
-    fairy: 2,
     poison: 0.5,
     ground: 0.5,
     rock: 0.5,
     ghost: 0.5,
     steel: 0,
-    fire: 1,
-    water: 1,
-    electric: 1,
-    normal: 1,
-    fighting: 1,
-    flying: 1,
-    psychic: 1,
-    bug: 1,
-    ice: 1,
-    dragon: 1,
-    dark: 1,
+    fairy: 2,
   },
   ground: {
     fire: 2,
     electric: 2,
+    grass: 0.5,
     poison: 2,
+    flying: 0,
+    bug: 0.5,
     rock: 2,
     steel: 2,
-    grass: 0.5,
-    bug: 0.5,
-    flying: 0,
-    water: 1,
-    normal: 1,
-    fighting: 1,
-    psychic: 1,
-    ice: 1,
-    dragon: 1,
-    ghost: 1,
-    dark: 1,
-    fairy: 1,
   },
   flying: {
+    electric: 0.5,
     grass: 2,
     fighting: 2,
     bug: 2,
-    electric: 0.5,
     rock: 0.5,
     steel: 0.5,
-    fire: 1,
-    water: 1,
-    normal: 1,
-    poison: 1,
-    ground: 1,
-    psychic: 1,
-    ice: 1,
-    dragon: 1,
-    ghost: 1,
-    dark: 1,
-    fairy: 1,
   },
-  psychic: {
-    fighting: 2,
-    poison: 2,
-    psychic: 0.5,
-    steel: 0.5,
-    dark: 0,
-    fire: 1,
-    water: 1,
-    grass: 1,
-    electric: 1,
-    normal: 1,
-    ground: 1,
-    flying: 1,
-    bug: 1,
-    rock: 1,
-    ice: 1,
-    dragon: 1,
-    ghost: 1,
-    fairy: 1,
-  },
+  psychic: { fighting: 2, poison: 2, psychic: 0.5, dark: 0, steel: 0.5 },
   bug: {
-    grass: 2,
-    psychic: 2,
-    dark: 2,
     fire: 0.5,
+    grass: 2,
     fighting: 0.5,
     poison: 0.5,
     flying: 0.5,
+    psychic: 2,
     ghost: 0.5,
+    dark: 2,
     steel: 0.5,
     fairy: 0.5,
-    water: 1,
-    electric: 1,
-    normal: 1,
-    ground: 1,
-    rock: 1,
-    ice: 1,
-    dragon: 1,
   },
   rock: {
     fire: 2,
     ice: 2,
-    flying: 2,
-    bug: 2,
     fighting: 0.5,
     ground: 0.5,
+    flying: 2,
+    bug: 2,
     steel: 0.5,
-    water: 1,
-    grass: 1,
-    electric: 1,
-    normal: 1,
-    poison: 1,
-    psychic: 1,
-    dragon: 1,
-    ghost: 1,
-    dark: 1,
-    fairy: 1,
   },
-  ghost: {
-    psychic: 2,
-    ghost: 2,
-    dark: 0.5,
-    normal: 0,
-    fire: 1,
-    water: 1,
-    grass: 1,
-    electric: 1,
-    fighting: 1,
-    poison: 1,
-    ground: 1,
-    flying: 1,
-    bug: 1,
-    rock: 1,
-    ice: 1,
-    dragon: 1,
-    steel: 1,
-    fairy: 1,
-  },
-  dragon: {
-    dragon: 2,
-    steel: 0.5,
-    fairy: 0,
-    fire: 1,
-    water: 1,
-    grass: 1,
-    electric: 1,
-    normal: 1,
-    fighting: 1,
-    poison: 1,
-    ground: 1,
-    flying: 1,
-    psychic: 1,
-    bug: 1,
-    rock: 1,
-    ice: 1,
-    ghost: 1,
-    dark: 1,
-  },
-  dark: {
-    psychic: 2,
-    ghost: 2,
-    fighting: 0.5,
-    dark: 0.5,
-    fairy: 0.5,
-    fire: 1,
-    water: 1,
-    grass: 1,
-    electric: 1,
-    normal: 1,
-    poison: 1,
-    ground: 1,
-    flying: 1,
-    bug: 1,
-    rock: 1,
-    ice: 1,
-    dragon: 1,
-    steel: 1,
-  },
+  ghost: { normal: 0, psychic: 2, ghost: 2, dark: 0.5 },
+  dragon: { dragon: 2, steel: 0.5, fairy: 0 },
+  dark: { fighting: 0.5, psychic: 2, ghost: 2, dark: 0.5, fairy: 0.5 },
   steel: {
-    ice: 2,
-    rock: 2,
-    fairy: 2,
     fire: 0.5,
     water: 0.5,
     electric: 0.5,
+    ice: 2,
+    rock: 2,
     steel: 0.5,
-    grass: 1,
-    normal: 1,
-    fighting: 1,
-    poison: 1,
-    ground: 1,
-    flying: 1,
-    psychic: 1,
-    bug: 1,
-    dragon: 1,
-    ghost: 1,
-    dark: 1,
+    fairy: 2,
   },
   fairy: {
+    fire: 0.5,
     fighting: 2,
+    poison: 0.5,
     dragon: 2,
     dark: 2,
-    fire: 0.5,
-    poison: 0.5,
     steel: 0.5,
-    water: 1,
-    grass: 1,
-    electric: 1,
-    normal: 1,
-    ground: 1,
-    flying: 1,
-    psychic: 1,
-    bug: 1,
-    rock: 1,
-    ice: 1,
-    ghost: 1,
-  },
-  normal: {
-    rock: 0.5,
-    steel: 0.5,
-    ghost: 0,
-    fire: 1,
-    water: 1,
-    grass: 1,
-    electric: 1,
-    fighting: 1,
-    poison: 1,
-    ground: 1,
-    flying: 1,
-    psychic: 1,
-    bug: 1,
-    ice: 1,
-    dragon: 1,
-    dark: 1,
-    fairy: 1,
   },
 };
 
-// ===== STARTER POKEMON DATA =====
-const starterPokemon = [
-  // Generation 1 Starters
-  {
-    id: 1,
-    name: "Charmander",
-    type: "fire",
-    level: 5,
-    maxHP: 39,
-    attack: 52,
-    defense: 43,
-    sprite: "assets/sprites/Charmander.png",
-    moves: [
-      new Move("Ember", "fire", 40),
-      new Move("Scratch", "normal", 40),
-      new Move("Flamethrower", "fire", 90),
-      new Move("Slash", "normal", 70),
-    ],
-  },
-  {
-    id: 2,
-    name: "Squirtle",
-    type: "water",
-    level: 5,
-    maxHP: 44,
-    attack: 48,
-    defense: 65,
-    sprite: "assets/sprites/squirtle.png",
-    moves: [
-      new Move("Water Gun", "water", 40),
-      new Move("Tackle", "normal", 40),
-      new Move("Hydro Pump", "water", 110),
-      new Move("Bite", "dark", 60),
-    ],
-  },
-  {
-    id: 3,
-    name: "Bulbasaur",
-    type: "grass",
-    level: 5,
-    maxHP: 45,
-    attack: 49,
-    defense: 49,
-    sprite: "assets/sprites/bulbasaur.png",
-    moves: [
-      new Move("Vine Whip", "grass", 45),
-      new Move("Tackle", "normal", 40),
-      new Move("Solar Beam", "grass", 120),
-      new Move("Razor Leaf", "grass", 55),
-    ],
-  },
+const POKEAPI_BASE = "https://pokeapi.co/api/v2";
 
-  // Electric Type
-  {
-    id: 4,
-    name: "Pikachu",
-    type: "electric",
-    level: 5,
-    maxHP: 35,
-    attack: 55,
-    defense: 40,
-    sprite: "assets/sprites/pikachu.jpg",
-    moves: [
-      new Move("Thunder Shock", "electric", 40),
-      new Move("Quick Attack", "normal", 40),
-      new Move("Thunderbolt", "electric", 90),
-      new Move("Iron Tail", "steel", 100),
-    ],
-  },
-
-  // Generation 2 Starters
-  {
-    id: 5,
-    name: "Cyndaquil",
-    type: "fire",
-    level: 5,
-    maxHP: 39,
-    attack: 52,
-    defense: 43,
-    sprite: "assets/sprites/cyndaquil.png",
-    moves: [
-      new Move("Ember", "fire", 40),
-      new Move("Tackle", "normal", 40),
-      new Move("Flame Wheel", "fire", 60),
-      new Move("Swift", "normal", 60),
-    ],
-  },
-  {
-    id: 6,
-    name: "Totodile",
-    type: "water",
-    level: 5,
-    maxHP: 50,
-    attack: 65,
-    defense: 64,
-    sprite: "assets/sprites/totodile.png",
-    moves: [
-      new Move("Water Gun", "water", 40),
-      new Move("Bite", "dark", 60),
-      new Move("Hydro Pump", "water", 110),
-      new Move("Ice Fang", "ice", 65),
-    ],
-  },
-  {
-    id: 7,
-    name: "Chikorita",
-    type: "grass",
-    level: 5,
-    maxHP: 45,
-    attack: 49,
-    defense: 65,
-    sprite: "assets/sprites/chikorita.png",
-    moves: [
-      new Move("Razor Leaf", "grass", 55),
-      new Move("Tackle", "normal", 40),
-      new Move("Solar Beam", "grass", 120),
-      new Move("Body Slam", "normal", 85),
-    ],
-  },
-
-  // Popular Pokemon
-  {
-    id: 8,
-    name: "Eevee",
-    type: "normal",
-    level: 5,
-    maxHP: 55,
-    attack: 55,
-    defense: 50,
-    sprite: "assets/sprites/eevee.png",
-    moves: [
-      new Move("Tackle", "normal", 40),
-      new Move("Quick Attack", "normal", 40),
-      new Move("Swift", "normal", 60),
-      new Move("Take Down", "normal", 90),
-    ],
-  },
-  {
-    id: 9,
-    name: "Meowth",
-    type: "normal",
-    level: 5,
-    maxHP: 40,
-    attack: 45,
-    defense: 35,
-    sprite: "assets/sprites/meowth.png",
-    moves: [
-      new Move("Scratch", "normal", 40),
-      new Move("Bite", "dark", 60),
-      new Move("Slash", "normal", 70),
-      new Move("Pay Day", "normal", 40),
-    ],
-  },
-  {
-    id: 10,
-    name: "Psyduck",
-    type: "water",
-    level: 5,
-    maxHP: 50,
-    attack: 52,
-    defense: 48,
-    sprite: "assets/sprites/psyduck.png",
-    moves: [
-      new Move("Water Gun", "water", 40),
-      new Move("Confusion", "psychic", 50),
-      new Move("Hydro Pump", "water", 110),
-      new Move("Zen Headbutt", "psychic", 80),
-    ],
-  },
-  {
-    id: 11,
-    name: "Geodude",
-    type: "rock",
-    level: 5,
-    maxHP: 40,
-    attack: 80,
-    defense: 100,
-    sprite: "assets/sprites/geodude.png",
-    moves: [
-      new Move("Rock Throw", "rock", 50),
-      new Move("Tackle", "normal", 40),
-      new Move("Rock Slide", "rock", 75),
-      new Move("Earthquake", "ground", 100),
-    ],
-  },
-  {
-    id: 12,
-    name: "Abra",
-    type: "psychic",
-    level: 5,
-    maxHP: 25,
-    attack: 20,
-    defense: 15,
-    sprite: "assets/sprites/abra.png",
-    moves: [
-      new Move("Confusion", "psychic", 50),
-      new Move("Psybeam", "psychic", 65),
-      new Move("Psychic", "psychic", 90),
-      new Move("Shadow Ball", "ghost", 80),
-    ],
-  },
-  {
-    id: 13,
-    name: "Gastly",
-    type: "ghost",
-    level: 5,
-    maxHP: 30,
-    attack: 35,
-    defense: 30,
-    sprite: "assets/sprites/gastly.png",
-    moves: [
-      new Move("Lick", "ghost", 30),
-      new Move("Confuse Ray", "ghost", 0),
-      new Move("Shadow Ball", "ghost", 80),
-      new Move("Dark Pulse", "dark", 80),
-    ],
-  },
-  {
-    id: 14,
-    name: "Machop",
-    type: "fighting",
-    level: 5,
-    maxHP: 70,
-    attack: 80,
-    defense: 50,
-    sprite: "assets/sprites/machop.png",
-    moves: [
-      new Move("Karate Chop", "fighting", 50),
-      new Move("Low Kick", "fighting", 65),
-      new Move("Cross Chop", "fighting", 100),
-      new Move("Seismic Toss", "fighting", 60),
-    ],
-  },
-  {
-    id: 15,
-    name: "Dratini",
-    type: "dragon",
-    level: 5,
-    maxHP: 41,
-    attack: 64,
-    defense: 45,
-    sprite: "assets/sprites/dratini.png",
-    moves: [
-      new Move("Dragon Rage", "dragon", 40),
-      new Move("Twister", "dragon", 40),
-      new Move("Dragon Pulse", "dragon", 85),
-      new Move("Aqua Tail", "water", 90),
-    ],
-  },
+const STARTER_POKEMON_IDS = [
+  1, // Bulbasaur
+  4, // Charmander
+  7, // Squirtle
+  25, // Pikachu
+  133, // Eevee
+  152, // Chikorita
+  155, // Cyndaquil
+  158, // Totodile
+  252, // Treecko
+  255, // Torchic
+  258, // Mudkip
+  387, // Turtwig
+  390, // Chimchar
+  393, // Piplup
+  495, // Snivy
 ];
 
-// ===== GAME STATE =====
+const OPPONENT_POKEMON_IDS = [
+  ...STARTER_POKEMON_IDS,
+  10, // Caterpie
+  16, // Pidgey
+  19, // Rattata
+  23, // Ekans
+  27, // Sandshrew
+  29, // Nidoran♀
+  32, // Nidoran♂
+  39, // Jigglypuff
+  43, // Oddish
+  52, // Meowth
+  54, // Psyduck
+  58, // Growlithe
+  60, // Poliwag
+  63, // Abra
+  66, // Machop
+  69, // Bellsprout
+  72, // Tentacool
+  74, // Geodude
+  92, // Gastly
+  98, // Krabby
+  104, // Cubone
+  109, // Koffing
+  116, // Horsea
+  129, // Magikarp
+  147, // Dratini
+];
+
 const gameState = {
   playerPokemon: null,
   opponentPokemon: null,
   currentTurn: "player",
   battleActive: false,
   audioEnabled: true,
+  starterPokemonData: [],
+  loadingComplete: false,
 };
 
-// ===== AUDIO SYSTEM =====
 const audio = {
   bgm: null,
   sfx: {},
 
   init() {
-    // Create audio elements (would use actual audio files in production)
-    // Placeholder: BGM would be loaded like this:
-    // this.bgm = new Audio('assets/audio/battle-theme.mp3');
-    // this.bgm.loop = true;
-    // this.bgm.volume = 0.3;
-    // SFX would be loaded like this:
-    // this.sfx.attack = new Audio('assets/audio/attack.wav');
-    // this.sfx.hit = new Audio('assets/audio/hit.wav');
-    // this.sfx.victory = new Audio('assets/audio/victory.wav');
-    // this.sfx.defeat = new Audio('assets/audio/defeat.wav');
+    this.bgm = new Audio("assets/audio/battle-theme.mp3");
+    this.bgm.loop = true;
+    this.bgm.volume = 0.3;
+
+    this.sfx.attack = new Audio("assets/audio/attack.wav");
+    this.sfx.hit = new Audio("assets/audio/hit.wav");
+    this.sfx.victory = new Audio("assets/audio/victory.wav");
+    this.sfx.defeat = new Audio("assets/audio/defeat.wav");
   },
 
   playBGM() {
@@ -695,18 +259,12 @@ const audio = {
   },
 };
 
-// ===== DOM ELEMENTS =====
 const dom = {
-  // Landing Page
   landingContainer: null,
   startBtn: null,
-
-  // Trainer Selection
   trainerSelection: null,
   starterGrid: null,
   confirmBtn: null,
-
-  // Battle Page
   battlePage: null,
   playerName: null,
   playerLevel: null,
@@ -726,19 +284,175 @@ const dom = {
   moveMenu: null,
 };
 
-// ===== INITIALIZATION =====
+async function fetchPokemonData(pokemonId) {
+  try {
+    const response = await fetch(`${POKEAPI_BASE}/pokemon/${pokemonId}`);
+    if (!response.ok) throw new Error(`Failed to fetch Pokemon ${pokemonId}`);
+    return await response.json();
+  } catch (error) {
+    console.error(`Error fetching Pokemon ${pokemonId}:`, error);
+    return null;
+  }
+}
+
+async function fetchMoveData(moveUrl) {
+  try {
+    const response = await fetch(moveUrl);
+    if (!response.ok) throw new Error(`Failed to fetch move`);
+    return await response.json();
+  } catch (error) {
+    console.error(`Error fetching move:`, error);
+    return null;
+  }
+}
+
+function getMainType(types) {
+  return types[0].type.name;
+}
+
+function capitalizeFirst(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+async function buildPokemonFromAPI(pokemonData, level = 5) {
+  if (!pokemonData) return null;
+
+  const name = capitalizeFirst(pokemonData.name);
+  const mainType = getMainType(pokemonData.types);
+
+  const baseHP = pokemonData.stats.find((s) => s.stat.name === "hp").base_stat;
+  const baseAttack = pokemonData.stats.find(
+    (s) => s.stat.name === "attack"
+  ).base_stat;
+  const baseDefense = pokemonData.stats.find(
+    (s) => s.stat.name === "defense"
+  ).base_stat;
+
+  const maxHP = Math.floor((2 * baseHP * level) / 100 + level + 10);
+  const attack = Math.floor((2 * baseAttack * level) / 100 + 5);
+  const defense = Math.floor((2 * baseDefense * level) / 100 + 5);
+
+  const sprite =
+    pokemonData.sprites.front_default ||
+    pokemonData.sprites.other["official-artwork"].front_default;
+
+  const learnedMoves = pokemonData.moves
+    .filter((m) => {
+      const learnMethod = m.version_group_details.find(
+        (v) => v.move_learn_method.name === "level-up"
+      );
+      return learnMethod && learnMethod.level_learned_at <= level + 10;
+    })
+    .slice(0, 10);
+
+  const movePromises = learnedMoves.map((m) => fetchMoveData(m.move.url));
+  const moveDataList = await Promise.all(movePromises);
+
+  const moves = moveDataList
+    .filter((md) => md && md.power && md.power > 0)
+    .slice(0, 4)
+    .map(
+      (md) =>
+        new Move(
+          capitalizeFirst(md.name.replace("-", " ")),
+          md.type.name,
+          md.power,
+          md.accuracy || 100
+        )
+    );
+
+  while (moves.length < 4) {
+    moves.push(new Move("Tackle", "normal", 40, 100));
+  }
+
+  return new Pokemon(
+    pokemonData.id,
+    name,
+    mainType,
+    level,
+    maxHP,
+    attack,
+    defense,
+    sprite,
+    moves
+  );
+}
+
+async function loadStarterPokemon() {
+  showLoadingMessage("Loading Pokémon from PokéAPI...");
+
+  const fetchPromises = STARTER_POKEMON_IDS.map((id) => fetchPokemonData(id));
+  const pokemonDataList = await Promise.all(fetchPromises);
+
+  const buildPromises = pokemonDataList.map((data) =>
+    buildPokemonFromAPI(data, 5)
+  );
+  gameState.starterPokemonData = (await Promise.all(buildPromises)).filter(
+    (p) => p !== null
+  );
+
+  gameState.loadingComplete = true;
+  hideLoadingMessage();
+  generateStarters();
+}
+
+async function generateRandomOpponent() {
+  const randomId =
+    OPPONENT_POKEMON_IDS[
+      Math.floor(Math.random() * OPPONENT_POKEMON_IDS.length)
+    ];
+
+  let opponentId = randomId;
+  if (gameState.playerPokemon && opponentId === gameState.playerPokemon.id) {
+    const filtered = OPPONENT_POKEMON_IDS.filter(
+      (id) => id !== gameState.playerPokemon.id
+    );
+    opponentId = filtered[Math.floor(Math.random() * filtered.length)];
+  }
+
+  const pokemonData = await fetchPokemonData(opponentId);
+  const opponentLevel = 5 + Math.floor(Math.random() * 3); // Level 5-7
+
+  return await buildPokemonFromAPI(pokemonData, opponentLevel);
+}
+
+function showLoadingMessage(message) {
+  const existing = document.getElementById("loadingMessage");
+  if (existing) existing.remove();
+
+  const loadingDiv = document.createElement("div");
+  loadingDiv.id = "loadingMessage";
+  loadingDiv.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        padding: 30px;
+        border: 4px solid #000;
+        box-shadow: 8px 8px 0 #000;
+        z-index: 9999;
+        text-align: center;
+        font-size: 0.9rem;
+    `;
+  loadingDiv.innerHTML = `
+        <p>${message}</p>
+        <div style="margin-top: 15px;">⚡ Loading... ⚡</div>
+    `;
+  document.body.appendChild(loadingDiv);
+}
+
+function hideLoadingMessage() {
+  const existing = document.getElementById("loadingMessage");
+  if (existing) existing.remove();
+}
+
 function initGame() {
-  // Cache DOM elements
   cacheDOMElements();
-
-  // Initialize audio
   audio.init();
-
-  // Setup event listeners
   setupEventListeners();
 
-  // Generate starter selection
-  generateStarters();
+  loadStarterPokemon();
 }
 
 function cacheDOMElements() {
@@ -775,6 +489,11 @@ function setupEventListeners() {
 
 // ===== PAGE TRANSITIONS =====
 function showTrainerSelection() {
+  if (!gameState.loadingComplete) {
+    showLoadingMessage("Please wait, loading Pokémon...");
+    return;
+  }
+
   dom.landingContainer.classList.add("fade-out");
   setTimeout(() => {
     dom.landingContainer.classList.add("hidden");
@@ -783,34 +502,35 @@ function showTrainerSelection() {
   }, 500);
 }
 
-function startBattle() {
+async function startBattle() {
   if (!gameState.playerPokemon) {
     addBattleMessage("Please select a starter Pokémon!");
     return;
   }
 
   dom.trainerSelection.classList.add("fade-out");
+
+  showLoadingMessage("Finding opponent...");
+
+  // Generate random opponent
+  gameState.opponentPokemon = await generateRandomOpponent();
+
+  hideLoadingMessage();
+
   setTimeout(() => {
     dom.trainerSelection.classList.add("hidden");
     dom.battlePage.classList.remove("hidden");
     dom.battlePage.classList.add("fade-in");
 
-    // Generate random opponent
-    generateOpponent();
-
-    // Initialize battle
     initBattle();
-
-    // Play BGM
     audio.playBGM();
   }, 500);
 }
 
-// ===== STARTER SELECTION =====
 function generateStarters() {
   dom.starterGrid.innerHTML = "";
 
-  starterPokemon.forEach((starter) => {
+  gameState.starterPokemonData.forEach((starter) => {
     const card = document.createElement("div");
     card.className = "starter-card";
     card.dataset.id = starter.id;
@@ -818,7 +538,7 @@ function generateStarters() {
     card.innerHTML = `
             <img src="${starter.sprite}" alt="${
       starter.name
-    }" class="starter-sprite-img">
+    }" class="starter-sprite-img" loading="lazy">
             <div class="starter-name">${starter.name}</div>
             <span class="starter-type type-${
               starter.type
@@ -836,15 +556,12 @@ function generateStarters() {
 }
 
 function selectStarter(starter, cardElement) {
-  // Remove previous selection
   document.querySelectorAll(".starter-card").forEach((card) => {
     card.classList.remove("selected");
   });
 
-  // Select new starter
   cardElement.classList.add("selected");
 
-  // Create Pokemon instance
   gameState.playerPokemon = new Pokemon(
     starter.id,
     starter.name,
@@ -854,33 +571,10 @@ function selectStarter(starter, cardElement) {
     starter.attack,
     starter.defense,
     starter.sprite,
-    starter.moves
+    [...starter.moves]
   );
 
-  // Show confirm button
   dom.confirmBtn.classList.remove("hidden");
-}
-
-// ===== OPPONENT GENERATION =====
-function generateOpponent() {
-  // Select random starter as opponent (excluding player's choice)
-  const availableStarters = starterPokemon.filter(
-    (s) => s.id !== gameState.playerPokemon.id
-  );
-  const randomStarter =
-    availableStarters[Math.floor(Math.random() * availableStarters.length)];
-
-  gameState.opponentPokemon = new Pokemon(
-    randomStarter.id,
-    randomStarter.name,
-    randomStarter.type,
-    randomStarter.level + Math.floor(Math.random() * 2), // Slightly higher level
-    randomStarter.maxHP,
-    randomStarter.attack,
-    randomStarter.defense,
-    randomStarter.sprite,
-    randomStarter.moves
-  );
 }
 
 // ===== BATTLE INITIALIZATION =====
@@ -888,14 +582,11 @@ function initBattle() {
   gameState.battleActive = true;
   gameState.currentTurn = "player";
 
-  // Update UI
   updatePokemonDisplay("player");
   updatePokemonDisplay("opponent");
 
-  // Clear battle log
   dom.battleLog.innerHTML = "";
 
-  // Show initial message
   addBattleMessage(`A wild ${gameState.opponentPokemon.name} appeared!`);
   addBattleMessage(`Go, ${gameState.playerPokemon.name}!`);
 }
@@ -927,7 +618,6 @@ function updateHPBar(side) {
   hpBar.style.width = hpPercentage + "%";
   hpText.textContent = `${pokemon.currentHP}/${pokemon.maxHP}`;
 
-  // Update HP bar color based on percentage
   hpBar.classList.remove("low", "critical");
   if (hpPercentage <= 20) {
     hpBar.classList.add("critical");
@@ -960,13 +650,14 @@ function showMoveMenu() {
             <span class="move-type type-${
               move.type
             }">${move.type.toUpperCase()}</span>
-            <span class="move-power">PWR: ${move.power}</span>
+            <span class="move-power">PWR: ${move.power} | ACC: ${
+      move.accuracy
+    }%</span>
         `;
     btn.addEventListener("click", () => handleAttack(move));
     dom.moveMenu.appendChild(btn);
   });
 
-  // Add back button
   const backBtn = document.createElement("button");
   backBtn.className = "move-btn";
   backBtn.innerHTML = '<span class="move-name">← Back</span>';
@@ -984,11 +675,8 @@ function handleAttack(move) {
   if (!gameState.battleActive || gameState.currentTurn !== "player") return;
 
   hideMoveMenu();
-
-  // Disable commands during attack sequence
   disableCommands();
 
-  // Player attacks
   executeAttack(
     gameState.playerPokemon,
     gameState.opponentPokemon,
@@ -996,14 +684,12 @@ function handleAttack(move) {
     "player"
   );
 
-  // Check if opponent fainted
   setTimeout(() => {
     if (!gameState.opponentPokemon.isAlive()) {
       endBattle(true);
       return;
     }
 
-    // Opponent's turn
     gameState.currentTurn = "opponent";
     opponentTurn();
   }, 2000);
@@ -1013,7 +699,6 @@ function opponentTurn() {
   addBattleMessage(`${gameState.opponentPokemon.name} is attacking!`);
 
   setTimeout(() => {
-    // AI selects random move
     const randomMove =
       gameState.opponentPokemon.moves[
         Math.floor(Math.random() * gameState.opponentPokemon.moves.length)
@@ -1032,7 +717,6 @@ function opponentTurn() {
         return;
       }
 
-      // Back to player's turn
       gameState.currentTurn = "player";
       enableCommands();
     }, 2000);
@@ -1041,7 +725,6 @@ function opponentTurn() {
 
 // ===== ATTACK EXECUTION =====
 function executeAttack(attacker, defender, move, side) {
-  // Accuracy check
   const hitChance = Math.random() * 100;
   if (hitChance > move.accuracy) {
     addBattleMessage(`${attacker.name} used ${move.name}!`);
@@ -1049,16 +732,10 @@ function executeAttack(attacker, defender, move, side) {
     return;
   }
 
-  // Calculate damage
   const damage = calculateDamage(attacker, defender, move);
-
-  // Apply damage
   const fainted = defender.takeDamage(damage);
 
-  // Play animations
   playAttackAnimation(side);
-
-  // Play SFX
   audio.playSFX("attack");
 
   setTimeout(() => {
@@ -1066,18 +743,17 @@ function executeAttack(attacker, defender, move, side) {
     audio.playSFX("hit");
   }, 300);
 
-  // Display messages
   addBattleMessage(`${attacker.name} used ${move.name}!`);
 
-  // Type effectiveness message
   const effectiveness = getTypeEffectiveness(move.type, defender.type);
   if (effectiveness > 1) {
     addBattleMessage("It's super effective!");
-  } else if (effectiveness < 1) {
+  } else if (effectiveness < 1 && effectiveness > 0) {
     addBattleMessage("It's not very effective...");
+  } else if (effectiveness === 0) {
+    addBattleMessage("It doesn't affect the opponent...");
   }
 
-  // Update HP bars
   setTimeout(() => {
     updateHPBar(side === "player" ? "opponent" : "player");
   }, 500);
@@ -1091,35 +767,34 @@ function executeAttack(attacker, defender, move, side) {
 
 // ===== DAMAGE CALCULATION =====
 function calculateDamage(attacker, defender, move) {
-  // Pokemon damage formula (simplified)
-  // Damage = (((2 * Level + 10) / 250) * (Attack / Defense) * BasePower + 2) * Modifier
-
   const level = attacker.level;
   const attack = attacker.attack;
   const defense = defender.defense;
   const basePower = move.power;
 
-  // Base damage
   let damage = ((2 * level + 10) / 250) * (attack / defense) * basePower + 2;
 
-  // Type effectiveness modifier
   const typeModifier = getTypeEffectiveness(move.type, defender.type);
   damage *= typeModifier;
 
-  // STAB (Same Type Attack Bonus)
   if (move.type === attacker.type) {
     damage *= 1.5;
   }
 
-  // Random factor (0.85 to 1.0)
   const randomFactor = 0.85 + Math.random() * 0.15;
   damage *= randomFactor;
 
-  return Math.floor(damage);
+  return Math.floor(Math.max(1, damage));
 }
 
 function getTypeEffectiveness(attackType, defenderType) {
-  return typeChart[attackType]?.[defenderType] || 1;
+  if (
+    typeChart[attackType] &&
+    typeChart[attackType][defenderType] !== undefined
+  ) {
+    return typeChart[attackType][defenderType];
+  }
+  return 1;
 }
 
 // ===== ANIMATIONS =====
@@ -1186,12 +861,10 @@ function endBattle(playerWon) {
     addBattleMessage("Battle ended.");
   }
 
-  // Stop BGM
   setTimeout(() => {
     audio.stopBGM();
   }, 2000);
 
-  // Show restart option
   setTimeout(() => {
     const restartBtn = document.createElement("button");
     restartBtn.className = "pixel-btn";

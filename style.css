@@ -1,4 +1,3 @@
-/* ===== GLOBAL STYLES ===== */
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 * {
@@ -18,7 +17,6 @@ body {
   display: none !important;
 }
 
-/* ===== LANDING PAGE ===== */
 .landing-page {
   position: relative;
 }
@@ -147,7 +145,6 @@ body {
   text-shadow: 2px 2px 0 #000;
 }
 
-/* ===== PIXEL BUTTONS ===== */
 .pixel-btn {
   font-family: "Press Start 2P", cursive;
   font-size: 1rem;
@@ -172,7 +169,6 @@ body {
   box-shadow: 2px 2px 0 #000;
 }
 
-/* ===== TRAINER SELECTION ===== */
 .trainer-selection {
   position: relative;
   z-index: 1;
@@ -225,7 +221,6 @@ body {
   margin-bottom: 15px;
 }
 
-/* Image styling for starter selection */
 .starter-sprite-img {
   width: 120px;
   height: 120px;
@@ -315,7 +310,6 @@ body {
   line-height: 1.5;
 }
 
-/* ===== BATTLE PAGE ===== */
 .battle-page {
   position: relative;
   z-index: 1;
@@ -351,7 +345,6 @@ body {
   filter: drop-shadow(4px 4px 0 rgba(0, 0, 0, 0.3));
 }
 
-/* Image styling for battle sprites */
 .battle-sprite-img {
   width: 150px;
   height: 150px;
@@ -491,7 +484,6 @@ body {
   white-space: nowrap;
 }
 
-/* ===== BATTLE LOG ===== */
 .battle-log {
   background: #fff;
   border: 4px solid #000;
@@ -512,7 +504,6 @@ body {
   color: #000;
 }
 
-/* ===== COMMAND MENU ===== */
 .command-menu {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -550,7 +541,6 @@ body {
   cursor: not-allowed;
 }
 
-/* ===== MOVE MENU ===== */
 .move-menu {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -594,7 +584,6 @@ body {
   margin-right: 5px;
 }
 
-/* Apply same type colors to move buttons */
 .move-type.type-fire {
   background: #f08030;
 }
@@ -657,7 +646,6 @@ body {
   color: #666;
 }
 
-/* ===== FADE ANIMATIONS ===== */
 @keyframes fadeOut {
   from {
     opacity: 1;
@@ -684,7 +672,6 @@ body {
   animation: fadeIn 0.5s forwards;
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
   .game-title {
     font-size: 2rem;
